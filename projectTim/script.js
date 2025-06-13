@@ -27,8 +27,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar background change on scroll
-window.addEventListener('scroll', () => {
+// Navbar background change on scroll with throttling
+let scrollTimeout;
+function handleNavbarScroll() {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
         navbar.style.background = 'rgba(10, 10, 10, 0.95)';
@@ -37,9 +38,18 @@ window.addEventListener('scroll', () => {
         navbar.style.background = 'rgba(10, 10, 10, 0.9)';
         navbar.style.boxShadow = 'none';
     }
-});
+}
 
-// Portfolio Filter
+window.addEventListener('scroll', () => {
+    if (!scrollTimeout) {
+        scrollTimeout = requestAnimationFrame(() => {
+            handleNavbarScroll();
+            scrollTimeout = null;
+        });
+    }
+}, { passive: true });
+
+// Portfolio Filter with optimized animations
 const filterButtons = document.querySelectorAll('.filter-btn');
 const galleryItems = document.querySelectorAll('.gallery-item');
 
@@ -52,27 +62,52 @@ filterButtons.forEach(button => {
         
         const filterValue = button.getAttribute('data-filter');
         
-        galleryItems.forEach(item => {
-            if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                item.style.display = 'block';
-                item.style.animation = 'slideUp 0.5s ease-out';
-            } else {
-                item.style.display = 'none';
-            }
+        // Use requestAnimationFrame for smoother filtering
+        requestAnimationFrame(() => {
+            galleryItems.forEach((item, index) => {
+                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                    item.style.display = 'block';
+                    item.style.opacity = '0';
+                    item.style.transform = 'translate3d(0, 20px, 0)';
+                    
+                    // Stagger the animations for smooth appearance
+                    setTimeout(() => {
+                        item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translate3d(0, 0, 0)';
+                    }, index * 50);
+                } else {
+                    item.style.transition = 'opacity 0.3s ease';
+                    item.style.opacity = '0';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
         });
     });
 });
 
-// Scroll to Top Button Functionality
+// Scroll to Top Button Functionality with throttling
 const scrollToTopBtn = document.getElementById('scrollToTop');
+let scrollToTopTimeout;
 
-window.addEventListener('scroll', () => {
+function handleScrollToTopVisibility() {
     if (window.scrollY > 300) {
         scrollToTopBtn.classList.add('visible');
     } else {
         scrollToTopBtn.classList.remove('visible');
     }
-});
+}
+
+window.addEventListener('scroll', () => {
+    if (!scrollToTopTimeout) {
+        scrollToTopTimeout = requestAnimationFrame(() => {
+            handleScrollToTopVisibility();
+            scrollToTopTimeout = null;
+        });
+    }
+}, { passive: true });
 
 scrollToTopBtn.addEventListener('click', () => {
     window.scrollTo({
@@ -336,53 +371,98 @@ contactForm.addEventListener('submit', (e) => {
     }, 1000);
 });
 
-// CTA Button scroll to portfolio
+// CTA Button scroll to portfolio with easing
 document.querySelector('.cta-button').addEventListener('click', () => {
-    document.querySelector('#portfolio').scrollIntoView({
-        behavior: 'smooth'
-    });
+    const portfolioSection = document.querySelector('#portfolio');
+    const targetPosition = portfolioSection.offsetTop - 80; // Account for navbar height
+    
+    // Use custom smooth scrolling for better control
+    smoothScrollTo(targetPosition, 1000);
 });
 
-// Intersection Observer for animations
+// Custom smooth scroll function with easing
+function smoothScrollTo(targetPosition, duration) {
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+    
+    function easeInOutQuart(t) {
+        return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t;
+    }
+    
+    function scrollAnimation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const easeProgress = easeInOutQuart(progress);
+        
+        window.scrollTo(0, startPosition + distance * easeProgress);
+        
+        if (timeElapsed < duration) {
+            requestAnimationFrame(scrollAnimation);
+        }
+    }
+    
+    requestAnimationFrame(scrollAnimation);
+}
+
+// Intersection Observer for animations with reduced threshold for smoother performance
 const observerOptions = {
-    threshold: 0.1,
+    threshold: [0.1, 0.3],
     rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.animation = 'slideUp 0.6s ease-out';
-            entry.target.style.opacity = '1';
+            const element = entry.target;
+            element.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            element.style.opacity = '1';
+            element.style.transform = 'translate3d(0, 0, 0)';
+            
+            // Unobserve after animation to improve performance
+            observer.unobserve(element);
         }
     });
 }, observerOptions);
 
-// Observe elements for animation
-document.querySelectorAll('.gallery-item, .comment, .skill-item').forEach(el => {
+// Observe elements for animation with initial state
+document.querySelectorAll('.gallery-item, .skill-item').forEach(el => {
     el.style.opacity = '0';
+    el.style.transform = 'translate3d(0, 30px, 0)';
+    el.style.willChange = 'opacity, transform';
     observer.observe(el);
 });
 
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
+// Parallax effect for hero section with throttling
+let parallaxTimeout;
+function handleParallax() {
     const scrolled = window.pageYOffset;
     const parallax = document.querySelector('.hero');
     const speed = scrolled * 0.5;
     
-    if (parallax) {
-        parallax.style.transform = `translateY(${speed}px)`;
+    if (parallax && scrolled < window.innerHeight) {
+        parallax.style.transform = `translate3d(0, ${speed}px, 0)`;
     }
-});
+}
 
-// Gallery item hover effects
+window.addEventListener('scroll', () => {
+    if (!parallaxTimeout) {
+        parallaxTimeout = requestAnimationFrame(() => {
+            handleParallax();
+            parallaxTimeout = null;
+        });
+    }
+}, { passive: true });
+
+// Gallery item hover effects with hardware acceleration
 galleryItems.forEach(item => {
     item.addEventListener('mouseenter', () => {
-        item.style.transform = 'translateY(-10px) scale(1.02)';
+        item.style.transform = 'translate3d(0, -10px, 0) scale(1.02)';
     });
     
     item.addEventListener('mouseleave', () => {
-        item.style.transform = 'translateY(0) scale(1)';
+        item.style.transform = 'translate3d(0, 0, 0) scale(1)';
     });
 });
 

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Downey Photography</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="https://cdn.myportfolio.com/b2ecfca8-cc75-4b22-bbee-67cdf49fd2c7/19c88f45-f8ef-4957-b0b3-e8b7a29a8795_rw_1200.png?h=4994f6fbfe8471b9b8e91fa3e3a0343b" alt="Tim Downey Photography Logo" class="nav-main-logo">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title" data-text="Passionate Photography Across All Genres">Passionate Photography Across All Genres</h1>
+            <p class="hero-subtitle">Hobart-based photographer with a passion for capturing portraits, workshops, and diverse photography styles</p>
+            <button class="cta-button">View My Work</button>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title" data-text="Portfolio">Portfolio</h2>
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="portraits">Portraits</button>
+                <button class="filter-btn" data-filter="landscapes">Landscapes</button>
+                <button class="filter-btn" data-filter="workshops">Workshops</button>
+                <button class="filter-btn" data-filter="harbour">Harbour</button>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item" data-category="portraits" data-fullscreen-image="https://picsum.photos/800/1200?random=1">
+                    <img src="https://picsum.photos/400/600?random=1" alt="Portrait Photography">
+                    <div class="gallery-overlay">
+                        <h3>Portrait Session</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                        <button class="view-btn" data-image="https://picsum.photos/800/1200?random=1">View Full</button>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="landscapes" data-fullscreen-image="https://picsum.photos/1200/800?random=2">
+                    <img src="https://picsum.photos/600/400?random=2" alt="Landscape Photography">
+                    <div class="gallery-overlay">
+                        <h3>Mountain Vista</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>4.7</span>
+                        </div>
+                        <button class="view-btn" data-image="https://picsum.photos/1200/800?random=2">View Full</button>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="workshops" data-fullscreen-image="https://picsum.photos/1000/1400?random=3">
+                    <img src="https://picsum.photos/500/700?random=3" alt="Workshop Photography">
+                    <div class="gallery-overlay">
+                        <h3>Male Model Workshop</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0</span>
+                        </div>
+                        <button class="view-btn" data-image="https://picsum.photos/1000/1400?random=3">View Full</button>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="harbour" data-fullscreen-image="https://picsum.photos/1100/1100?random=4">
+                    <img src="https://picsum.photos/550/550?random=4" alt="Sydney Harbour Photography">
+                    <div class="gallery-overlay">
+                        <h3>Sydney Harbour</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.8</span>
+                        </div>
+                        <button class="view-btn" data-image="https://picsum.photos/1100/1100?random=4">View Full</button>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="portraits" data-fullscreen-image="https://picsum.photos/900/1300?random=5">
+                    <img src="https://picsum.photos/450/650?random=5" alt="Portrait Photography">
+                    <div class="gallery-overlay">
+                        <h3>Professional Headshot</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                        <button class="view-btn" data-image="https://picsum.photos/900/1300?random=5">View Full</button>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="landscapes" data-fullscreen-image="https://picsum.photos/1300/900?random=6">
+                    <img src="https://picsum.photos/650/450?random=6" alt="Landscape Photography">
+                    <div class="gallery-overlay">
+                        <h3>Ocean Sunset</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0</span>
+                        </div>
+                        <button class="view-btn" data-image="https://picsum.photos/1300/900?random=6">View Full</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Adobe Lightroom Gallery -->
+            <div class="lightroom-section">
+                <h3 class="lightroom-title">Landscape Photography Collection</h3>
+                <div class="lightroom-gallery-card">
+                    <div class="gallery-card-content">
+                        <div class="gallery-preview-image">
+                            <i class="fas fa-images"></i>
+                        </div>
+                        <h4>Landscape Photography</h4>
+                        <p>Explore my complete collection of landscape photography featuring stunning natural vistas and scenic locations.</p>
+                        <button id="openLightroomModal" class="gallery-open-btn">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Full Gallery
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Tim Downey</h2>
+                    <p>Based in beautiful Hobart, Tasmania, I'm an amateur photographer with a deep passion for photography across all genres. Armed with my Sony A7RIV and favorite lenses including the Sigma 85mm DG DN and Sony 50mm, I capture moments that matter.</p>
+                    <p>From intimate portraits using my trusted 50mm lens to dynamic workshop photography, I bring enthusiasm and technical skill to every shoot. My work spans diverse subjects and styles, always driven by my love for the craft.</p>
+                    <div class="skills">
+                        <div class="skill-item">
+                            <i class="fas fa-camera"></i>
+                            <span>Portrait Photography</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-mountain"></i>
+                            <span>Landscape Photography</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-users"></i>
+                            <span>Workshop Photography</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-water"></i>
+                            <span>Harbour Photography</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://picsum.photos/400/500?random=10" alt="Tim Downey">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>timdowney@live.com.au</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-instagram"></i>
+                        <span>@tim_d_aus</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Hobart, Tasmania</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://instagram.com/tim_d_aus" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/feeltheeffect85" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://flickr.com/photos/timdowney" target="_blank"><i class="fab fa-flickr"></i></a>
+                        <a href="mailto:timdowney@live.com.au"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject" required>
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content">
+        <div class="lightbox-rating">
+            <h3>Rate this photo</h3>
+            <div class="lightbox-stars">
+                <i class="far fa-star" data-rating="1"></i>
+                <i class="far fa-star" data-rating="2"></i>
+                <i class="far fa-star" data-rating="3"></i>
+                <i class="far fa-star" data-rating="4"></i>
+                <i class="far fa-star" data-rating="5"></i>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://cdn.myportfolio.com/b2ecfca8-cc75-4b22-bbee-67cdf49fd2c7/19c88f45-f8ef-4957-b0b3-e8b7a29a8795_rw_600.png?h=82287a85fa368fbb2bdcd797549d4589" alt="Tim Downey Photography" class="footer-logo-img">
+                    <p>Capturing moments that last forever</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <p>timdowney@live.com.au</p>
+                    <p>Hobart, Tasmania</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Tim Downey Photography. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Lightroom Gallery Modal -->
+    <div id="lightroomModal" class="lightroom-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Landscape Photography Collection</h3>
+                <button id="closeLightroomModal" class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Opening your landscape gallery in a new window...</p>
+                <div class="gallery-instructions">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Your gallery will open in a new tab. You can return here anytime by switching back to this tab.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

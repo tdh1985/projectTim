@@ -64,8 +64,23 @@ filterButtons.forEach(button => {
         
         // Use requestAnimationFrame for smoother filtering
         requestAnimationFrame(() => {
+            let shownCount = 0;
             galleryItems.forEach((item, index) => {
-                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                const categories = item.getAttribute('data-category');
+                let shouldShow = false;
+                
+                if (filterValue === 'all') {
+                    // For 'all' filter, only show items with 'all' in category and limit to 20
+                    if (categories.includes('all') && shownCount < 20) {
+                        shouldShow = true;
+                        shownCount++;
+                    }
+                } else {
+                    // For specific filters, show all items with that category
+                    shouldShow = categories.includes(filterValue);
+                }
+                
+                if (shouldShow) {
                     item.style.display = 'block';
                     item.style.opacity = '0';
                     item.style.transform = 'translate3d(0, 20px, 0)';
